@@ -21,6 +21,10 @@ export const routes: Routes = [
     loadChildren: () => import('./formsModule/forms.module').then(m => m.FormsModule)
   },
   {
+    path: 'client',
+    loadChildren: () => import('./clientModule/client.module').then(m => m.ClientModule)
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },

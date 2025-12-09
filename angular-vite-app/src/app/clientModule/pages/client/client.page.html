@@ -1,0 +1,66 @@
+<div class="client-page">
+  <h1>Client Data</h1>
+
+  <div class="search-section">
+    <input
+      type="text"
+      [value]="search()"
+      (input)="onSearchChange($any($event.target).value)"
+      placeholder="Search by name, email, or description..."
+      class="search-input"
+    />
+  </div>
+
+  <ng-container *ngIf="data$ | async as response">
+    <div class="loading" *ngIf="response.loading">Loading...</div>
+
+    <div class="error-message" *ngIf="!response.loading && response.error">
+      <strong>Error:</strong> {{ response.error }}
+    </div>
+
+    <div class="data-section" *ngIf="!response.loading && !response.error">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of response.data">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.description }}</td>
+          </tr>
+          <tr *ngIf="response.data.length === 0">
+            <td colspan="4" class="empty">No data found</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination" *ngIf="response.totalPages > 0">
+        <button
+          type="button"
+          [disabled]="page() === 1"
+          (click)="onPageChange(page() - 1)"
+        >
+          Previous
+        </button>
+        <span class="page-info">
+          Page {{ page() }} of {{ response.totalPages }} (Total: {{ response.total }})
+        </span>
+        <button
+          type="button"
+          [disabled]="page() === response.totalPages"
+          (click)="onPageChange(page() + 1)"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
