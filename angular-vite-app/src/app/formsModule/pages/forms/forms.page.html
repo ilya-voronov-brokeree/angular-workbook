@@ -1,0 +1,24 @@
+<div class="forms-page">
+  <div class="tabs">
+    <button
+      type="button"
+      [class.active]="activeTab() === 'template'"
+      (click)="setTab('template')"
+    >
+      Template-Driven Form
+    </button>
+    <button
+      type="button"
+      [class.active]="activeTab() === 'reactive'"
+      (click)="setTab('reactive')"
+    >
+      Reactive Form
+    </button>
+  </div>
+
+  <div class="tab-content">
+    <app-template-driven-page *ngIf="activeTab() === 'template'" />
+    <app-reactive-page *ngIf="activeTab() === 'reactive'" />
+  </div>
+</div>
+

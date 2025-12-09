@@ -17,6 +17,10 @@ export const routes: Routes = [
     loadChildren: () => import('./todoModule/todo.module').then(m => m.TodoModule)
   },
   {
+    path: 'forms',
+    loadChildren: () => import('./formsModule/forms.module').then(m => m.FormsModule)
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },

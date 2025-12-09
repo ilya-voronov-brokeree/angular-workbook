@@ -1,0 +1,32 @@
+<div class="reactive-page">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        id="description"
+        formControlName="description"
+      />
+      <div *ngIf="todoForm.get('description')?.invalid && todoForm.get('description')?.touched" class="error">
+        Description is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dueDate">Due Date</label>
+      <input
+        type="datetime-local"
+        id="dueDate"
+        formControlName="dueDate"
+      />
+      <div *ngIf="todoForm.get('dueDate')?.invalid && todoForm.get('dueDate')?.touched" class="error">
+        Due date is required
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="todoForm.invalid">Add Todo</button>
+  </form>
+
+  <app-forms-todo-table [todos]="todos()" />
+</div>
+
