@@ -1,6 +1,8 @@
 <section class="todo-page">
   <header class="header">
-    <div class="title">TODOs ({{ count() }})</div>
+    <div class="title" [appCountColor]="count()">
+      TODOs ({{ count() }} {{ count() | countPlural }})
+    </div>
     <div class="actions">
       <input
         type="text"
