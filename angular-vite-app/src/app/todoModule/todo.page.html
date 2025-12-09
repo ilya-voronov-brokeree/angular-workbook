@@ -1,0 +1,23 @@
+<section class="todo-page">
+  <header class="header">
+    <div class="title">TODOs ({{ count() }})</div>
+    <div class="actions">
+      <input
+        type="text"
+        [ngModel]="title()"
+        (ngModelChange)="title.set($event)"
+        placeholder="New todo title"
+      />
+      <button type="button" (click)="addTodo()">Add todo</button>
+    </div>
+  </header>
+
+  <app-todo-table
+    [todos]="pagedTodos()"
+    [page]="page()"
+    [pageSize]="5"
+    [totalCount]="count()"
+    (pageChange)="setPage($event)"
+  />
+</section>
+

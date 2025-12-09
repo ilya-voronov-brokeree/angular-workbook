@@ -3,13 +3,14 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { CommonModule } from './common/common.module';
+import { CommonModule } from './commonModule/common.module';
+import { TodoModule } from './todoModule/todo.module';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    importProvidersFrom(CommonModule.forRoot())
+    importProvidersFrom(CommonModule.forRoot(), TodoModule)
   ]
 };

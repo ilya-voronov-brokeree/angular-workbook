@@ -1,0 +1,28 @@
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos">
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.completed ? 'Done' : 'Open' }}</td>
+        <td>{{ todo.createdAt | date: 'short' }}</td>
+      </tr>
+      <tr *ngIf="!todos.length">
+        <td colspan="3" class="empty">No todos</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pager">
+    <button type="button" (click)="prev()" [disabled]="page <= 1">Prev</button>
+    <span>Page {{ page }} / {{ totalPages }}</span>
+    <button type="button" (click)="next()" [disabled]="page >= totalPages">Next</button>
+  </div>
+</div>
+
