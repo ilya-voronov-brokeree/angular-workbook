@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RESOLUTION_TOKEN } from '../../commonModule/resolution.token';
 
 @Component({
   selector: 'app-initial-page',
@@ -8,6 +9,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './initial.page.html',
   styleUrls: ['./initial.page.scss']
 })
-export class InitialPageComponent {}
+export class InitialPageComponent {
+  private readonly resolution = inject(RESOLUTION_TOKEN);
+  readonly resolutionValue = this.resolution.getValue();
+}
 
 

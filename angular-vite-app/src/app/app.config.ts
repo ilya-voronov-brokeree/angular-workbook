@@ -4,13 +4,13 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { CommonModule } from './commonModule/common.module';
-import { TodoModule } from './todoModule/todo.module';
+import { SharedModule } from './sharedModule/shared.module';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    importProvidersFrom(CommonModule.forRoot(), TodoModule)
+    importProvidersFrom(CommonModule.forRoot(), SharedModule)
   ]
 };
