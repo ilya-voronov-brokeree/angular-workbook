@@ -13,6 +13,16 @@
       />
       <button type="button" (click)="addTodo()">Add todo</button>
     </div>
+    <div class="view-todo">
+      <input
+        type="number"
+        [ngModel]="viewTodoIndex() ?? ''"
+        (ngModelChange)="setViewTodoIndex($event)"
+        placeholder="Todo Index"
+        class="todo-id-input"
+      />
+      <button type="button" (click)="viewTodo()">View Todo</button>
+    </div>
   </header>
 
   <app-todo-table

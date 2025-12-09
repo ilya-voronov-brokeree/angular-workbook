@@ -22,5 +22,10 @@ export class TodoService {
     if (!this.storage) return;
     this.storage.setItem(STORAGE_KEY, JSON.stringify(todos));
   }
+
+  getById(id: number): Todo | null {
+    const todos = this.load();
+    return todos.find(todo => todo.id === id) || null;
+  }
 }
 

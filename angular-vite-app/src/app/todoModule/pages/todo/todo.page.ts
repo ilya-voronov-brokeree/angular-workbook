@@ -1,7 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { RESOLUTION_TOKEN } from '../commonModule/resolution.token';
-import { TodoService } from './todo.service';
-import { Todo } from './todo.model';
+import { Router } from '@angular/router';
+import { Resolution } from '../../../commonModule/resolution.interface';
+import { RESOLUTION_TOKEN } from '../../../commonModule/resolution.token';
+import { TodoService } from '../../todo.service';
+import { Todo } from '../../todo.model';
 
 @Component({
   selector: 'app-todo-page',
@@ -14,7 +16,9 @@ export class TodoPageComponent {
   private readonly todosState = signal<Todo[]>([]);
   readonly page = signal(1);
   readonly title = signal('');
-  private readonly resolution = inject(RESOLUTION_TOKEN);
+  readonly viewTodoIndex = signal<number | null>(null);
+  private readonly resolution = inject<Resolution>(RESOLUTION_TOKEN);
+  private readonly router = inject(Router);
 
   readonly count = computed(() => this.todosState().length);
   readonly pagedTodos = computed(() => {
@@ -46,6 +50,22 @@ export class TodoPageComponent {
 
   setPage(next: number): void {
     this.page.set(next);
+  }
+
+  setViewTodoIndex(value: string | number | null): void {
+    if (value === null || value === '') {
+      this.viewTodoIndex.set(null);
+    } else {
+      const num = typeof value === 'string' ? Number(value) : value;
+      this.viewTodoIndex.set(isNaN(num) ? null : num);
+    }
+  }
+
+  viewTodo(): void {
+    const index = this.viewTodoIndex();
+    if (index !== null && !isNaN(index) && index >= 0) {
+      this.router.navigate(['/todos', index]);
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AboutPageComponent } from './pages/about/about.page';
 import { InitialPageComponent } from './pages/initial/initial.page';
+import { NotFoundComponent } from './sharedModule/components/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -16,7 +17,11 @@ export const routes: Routes = [
     loadChildren: () => import('./todoModule/todo.module').then(m => m.TodoModule)
   },
   {
+    path: 'not-found',
+    component: NotFoundComponent
+  },
+  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'not-found'
   }
 ];

@@ -1,0 +1,16 @@
+<section class="todo-detail-page">
+  <header class="header">
+    <button type="button" (click)="goBack()" class="back-button">← Back</button>
+  </header>
+  <div class="content" *ngIf="todo">
+    <h1>{{ todo.title }}</h1>
+    <div class="meta">
+      <span class="id">Index: {{ index }}</span>
+      <span class="status" [class.completed]="todo.completed">
+        {{ todo.completed ? 'Completed' : 'Pending' }}
+      </span>
+      <span class="created">Created: {{ todo.createdAt | date:'medium' }}</span>
+    </div>
+  </div>
+</section>
+

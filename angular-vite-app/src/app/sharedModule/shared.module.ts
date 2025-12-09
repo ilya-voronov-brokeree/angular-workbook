@@ -5,14 +5,15 @@ import { RouterModule } from '@angular/router';
 import { RESOLUTION_TOKEN } from '../commonModule/resolution.token';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MainPanelComponent } from './components/main-panel/main-panel.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CountColorDirective } from './count-color.directive';
 import { CountPluralPipe } from './count-plural.pipe';
 import { SharedResolutionService } from './shared-resolution.service';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, NavigationComponent, MainPanelComponent],
+  imports: [CommonModule, FormsModule, RouterModule, NavigationComponent, MainPanelComponent, NotFoundComponent],
   declarations: [CountColorDirective, CountPluralPipe],
-  exports: [CommonModule, FormsModule, NavigationComponent, MainPanelComponent, CountColorDirective, CountPluralPipe],
+  exports: [CommonModule, FormsModule, NavigationComponent, MainPanelComponent, CountColorDirective, CountPluralPipe, NotFoundComponent],
   providers: [
     {
       provide: RESOLUTION_TOKEN,
